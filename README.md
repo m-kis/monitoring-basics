@@ -1,6 +1,6 @@
 # monitoring-basics
 
-Ce script permet de surveiller l'état des services en vérifiant leur disponibilité.
+Ce script permet de surveiller l'état des webservices en vérifiant leur disponibilité.
 
 ## Prérequis
 
