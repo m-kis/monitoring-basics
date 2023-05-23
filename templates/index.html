@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monitoring des services</title>
+</head>
+<body>
+    <h1>Monitoring des services</h1>
+    <table>
+        <tr>
+            <th>Nom du service</th>
+            <th>Adresse du service</th>
+            <th>État</th>
+        </tr>
+        {% for service in services %}
+        <tr>
+            <td>{{ service.name }}</td>
+            <td>{{ service.host }}</td>
+            <td>{{ service.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
