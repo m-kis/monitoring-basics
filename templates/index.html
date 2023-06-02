@@ -1,70 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Monitoring des services created by M-KIS</title>
-    <style>
-        body {
-            background-color: #F5F5F5;
-            font-family: Montserrat, sans-serif;
-            color: #08376B;
-        }
-        h1 {
-            color: #08376B;
-            font-size: 24px;
-            font-weight: 600;
-        }
-        .logo {
-            max-width: 200px;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #08376B;
-        }
-        th {
-            background-color: #9AEBA6;
-        }
-        td.status {
-            font-weight: bold;
-        }
-        .alert {
-            color: #FF0000;
-            font-weight: bold;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Monitoring</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Monitoring des services created by M-KIS</h1>
-    <img class="logo" src="{{ url_for('static', filename='Logo_mkis.png') }}" alt="Logo MKIS">
-    <form method="post">
-        <label for="host">Hôte à surveiller :</label>
-        <input type="text" id="host" name="host">
-        <input type="submit" value="Surveiller">
-    </form>
-    <table>
-        <tr>
-            <th>Nom du service</th>
-            <th>Adresse du service</th>
-            <th>État</th>
-        </tr>
-        {% for service in services %}
-        <tr>
-            <td>{{ service.name }}</td>
-            <td>{{ service.host }}</td>
-            <td class="status">{{ service.status }}</td>
-        </tr>
-        {% if service.status == "DOWN" %}
-        <tr class="alert">
-            <td colspan="3">Le service est indisponible</td>
-        </tr>
+    <header>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        <h1>Merlin Keep IT Simple</h1>
+    </header>
+    <div class="container">
+        <h2>M-KIS Monitoring</h2>
+        <form action="/" method="post">
+            <label for="name">Nom du service :</label>
+            <input type="text" name="name" id="name">
+            <label for="host">Hôte :</label>
+            <input type="text" name="host" id="host">
+            <input type="submit" value="Ajouter">
+        </form>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
         {% endif %}
-        {% endfor %}
-    </table>
+        <ul class="services">
+            {% for service in services %}
+                <li class="service">
+                    <span class="name">{{ service['name'] }}</span>
+                    {% if service['status'] == 'UP' %}
+                        <span class="status up">UP</span>
+                    {% elif service['status'] == 'DOWN' %}
+                        <span class="status down">DOWN</span>
+                        {% if service['message'] %}
+                            <p class="message">{{ service['message'] }}</p>
+                        {% endif %}
+                    {% else %}
+                        <span class="status unknown">UNKNOWN</span>
+                    {% endif %}
+                    <a class="delete-link" href="{{ url_for('index', delete=service['host']) }}">Supprimer</a>
+                </li>
+            {% endfor %}
+        </ul>
+        
+    </div>
 </body>
 </html>
