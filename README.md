@@ -1,27 +1,43 @@
-# monitoring-basics
+# Monitoring Service
 
-Ce script permet de surveiller l'état des webservices en vérifiant leur disponibilité.
+Ce projet est un système de surveillance simple qui vérifie l'état de différents services en ligne. Il envoie des alertes par e-mail lorsque les services sont indisponibles.
 
 ## Prérequis
 
-- Python 3 installé sur la machine
-- Flask package installé (`pip install flask`)
+Avant d'exécuter l'application, assurez-vous d'avoir les éléments suivants installés :
+
+- Python 3.x : https://www.python.org/downloads/
+- Flask : Exécutez la commande suivante pour installer Flask : `pip install flask`
+
+## Configuration
+
+Avant de lancer l'application, vous devez configurer les paramètres de messagerie électronique pour l'envoi d'alertes par e-mail. Ouvrez le fichier `monitoring.py` et modifiez les variables suivantes en fonction de vos informations :
+
+- `smtp_server` : l'adresse du serveur SMTP
+- `smtp_port` : le port SMTP
+- `smtp_username` : le nom d'utilisateur SMTP
+- `smtp_password` : le mot de passe SMTP
+- `email_from` : l'adresse e-mail de l'expéditeur
+- `email_to` : l'adresse e-mail du destinataire des alertes
 
 ## Utilisation
-python monitoring.py
 
-1. Définir les services à surveiller en modifiant la liste `services` dans le script `monitoring.py`. Chaque service doit avoir un nom et une adresse (IP ou URL) associés.
+1. Clonez le dépôt Git : `git clone https://github.com/votre-utilisateur/monitoring-service.git`
+2. Accédez au répertoire du projet : `cd monitoring-service`
+3. Lancez l'application : `python monitoring.py`
+4. Ouvrez votre navigateur et accédez à l'URL suivante : `http://localhost:8000`
 
-2. Exécuter le script `monitoring.py` :
-
-3. Ouvrir un navigateur web et accéder à l'adresse `http://localhost:8000` pour afficher le tableau de monitoring des services.
-
-4. Les états des services seront mis à jour automatiquement en fonction de leur disponibilité.
-
-5. Arrêter le script en appuyant sur `Ctrl + C`.
+L'application affichera l'état des services surveillés et enverra des alertes par e-mail lorsque des services sont indisponibles. Vous pouvez ajouter de nouveaux services en utilisant le formulaire sur la page principale.
 
 ## Personnalisation
 
-- Vous pouvez personnaliser le template HTML dans le fichier `templates/index.html` pour adapter l'apparence du tableau de monitoring selon vos besoins.
+- Pour ajouter ou supprimer des services à surveiller,Vous pouvez simplement le faire depuis l'interface web
+- Pour personnaliser l'apparence de l'application, modifiez le fichier `style.css` dans le répertoire `static`.
 
-- Vous pouvez également ajouter d'autres services à surveiller en ajoutant des entrées à la liste `services` dans le script `monitoring.py`.
+## Contributions
+
+Les contributions sont les bienvenues ! Si vous souhaitez améliorer ce projet ou signaler des problèmes, n'hésitez pas à ouvrir une issue ou à proposer une pull request.
+
+## Licence
+
+Ce projet est sous licence [MIT](LICENSE).
