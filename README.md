@@ -22,8 +22,8 @@ Avant de lancer l'application, vous devez configurer les paramètres de messager
 
 ## Utilisation
 
-1. Clonez le dépôt Git : `git clone https://github.com/votre-utilisateur/monitoring-service.git`
-2. Accédez au répertoire du projet : `cd monitoring-service`
+1. Clonez le dépôt Git : `git clone https://github.com/m-kis/monitoring-basics.git`
+2. Accédez au répertoire du projet : `cd monitoring-basics`
 3. Lancez l'application : `python monitoring.py`
 4. Ouvrez votre navigateur et accédez à l'URL suivante : `http://localhost:8000`
 
