@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Monitoring des services</title>
+    <title>Monitoring des services created by M-KIS</title>
+    <style>
+        body {
+            background-color: #F5F5F5;
+            font-family: Montserrat, sans-serif;
+            color: #08376B;
+        }
+        h1 {
+            color: #08376B;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .logo {
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #08376B;
+        }
+        th {
+            background-color: #9AEBA6;
+        }
+        td.status {
+            font-weight: bold;
+        }
+        .alert {
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h1>Monitoring des services</h1>
+    <h1>Monitoring des services created by M-KIS</h1>
+    <img class="logo" src="{{ url_for('static', filename='Logo_mkis.png') }}" alt="Logo MKIS">
+    <form method="post">
+        <label for="host">Hôte à surveiller :</label>
+        <input type="text" id="host" name="host">
+        <input type="submit" value="Surveiller">
+    </form>
     <table>
         <tr>
             <th>Nom du service</th>
@@ -15,8 +57,13 @@
         <tr>
             <td>{{ service.name }}</td>
             <td>{{ service.host }}</td>
-            <td>{{ service.status }}</td>
+            <td class="status">{{ service.status }}</td>
         </tr>
+        {% if service.status == "DOWN" %}
+        <tr class="alert">
+            <td colspan="3">Le service est indisponible</td>
+        </tr>
+        {% endif %}
         {% endfor %}
     </table>
 </body>
